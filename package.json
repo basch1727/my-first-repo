@@ -1,0 +1,23 @@
+{
+  "name": "my-first-repo",
+  "version": "1.0.0",
+  "description": "Привет! Меня зовут Владимир. Я учусь пользоваться Git и GitHub.\r Немного о себе , веселый ,отзывчивый, лояльный, из интересов - все что касается цифры, а сейчас уже и ИИ и так далее, люблю иногда поиграть в разное, а так же люблю посидеть на природе.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basch1727/my-first-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/basch1727/my-first-repo/issues"
+  },
+  "homepage": "https://github.com/basch1727/my-first-repo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  }
+}
