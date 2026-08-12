@@ -10,5 +10,8 @@ export class CartPage {
     async goToCheckout() {
         await this.checkOutButton.click();
     }
+    async getFirstItemInCart (){
+        return await this.page.locator('.inventory_item_name').first().textContent()
+    }
 }
 
