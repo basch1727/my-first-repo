@@ -3,7 +3,7 @@ export class InventoryPage {
     constructor(page) {
         this.page = page;
         this.pageTitle = page.getByText('Swag Labs');
-        this.shopingCart = page.locator('[data-test="shopping-cart-link"]')
+        this.shoppingCart = page.locator('[data-test="shopping-cart-link"]')
         this.inventoryList = page.locator('[data-test="inventory-container"]')
         //this.addToCartButton = page.locator(getByText('Add to cart'))
         //делайем динамическую кнопку (будет работать для любого товара)
@@ -18,7 +18,7 @@ export class InventoryPage {
         await this.addToCartButton(itemName).click();
     }
     async openCart() {
-        await this.shopingCart.click();
+        await this.shoppingCart.click();
     }
     async getPageTitle() {
         return await this.pageTitle.textContent();
