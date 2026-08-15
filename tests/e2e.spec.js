@@ -7,33 +7,33 @@ import { CheckoutStepTwoPage } from '../pages/CheckoutStepTwoPage';
 import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
 
 test ('Full purchase flow' , async ({page}) => {
-    //login
     const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
+    const cartPage = new CartPage(page);
+    const checkoutStepOne = new CheckoutStepOnePage(page);
+    const checkoutFinish = new CheckoutStepTwoPage(page);
+    const completePage = new CheckoutCompletePage(page);
+    //login
     await loginPage.goto();
     await loginPage.login('standard_user', 'secret_sauce');
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
     //inventorypage
-    const inventoryPage = new InventoryPage(page);
     const title = await inventoryPage.getPageTitle();
     expect(title).toBe('Products');
     //hight low , vice versa
-    await page.locator('[data-test="product-sort-container"]').selectOption('hilo');
-    const mostExpensiveItem = await page.locator('.inventory_item_name').first().textContent();
-    await inventoryPage.addItemToCart(mostExpensiveItem);
+    await inventoryPage.itemSort();
+    const mostExpitem = await inventoryPage.takingMostExpItem();
+    await inventoryPage.addItemToCart(mostExpitem);
     await inventoryPage.openCart();
     //cartpage
-    const cartPage = new CartPage(page);
     const currentCartItem = await cartPage.getFirstItemInCart();
-    expect(currentCartItem).toBe(mostExpensiveItem);
+    expect(currentCartItem).toBe(mostExpitem);
     await cartPage.goToCheckout();
     //checkout step one
-    const checkoutStepOne = new CheckoutStepOnePage(page);
     await checkoutStepOne.fillUserInfo('Test', 'User', '12345');
     //checkout step two
-    const checkoutFinish = new CheckoutStepTwoPage(page);
     await checkoutFinish.finishCheckout();
     //complete page 
-    const completePage = new CheckoutCompletePage(page);
     const purchaseCompletedMsg = await completePage.getCompletionMessage();
     expect(purchaseCompletedMsg).toBe('Thank you for your order!');
     
