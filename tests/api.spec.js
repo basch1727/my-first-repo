@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 // используем .serial чтобы тесты шли друг за другом, иначем будут проблемы с ID 
 // так как по дефолту они выполняются паралельно и переменная не успевает переопределиться
-test.describe.serial('API - tests', () => {
+test.describe.serial('API - tests @api', () => {
     const baseUrl = 'https://restful-booker.herokuapp.com';
     const authUrl = 'https://restful-booker.herokuapp.com/auth';
     let bookingId;
@@ -125,5 +125,3 @@ test.describe.serial('API - tests', () => {
 
     }); 
 });
-
-
