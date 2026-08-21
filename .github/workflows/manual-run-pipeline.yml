@@ -17,9 +17,10 @@ steps:
   run: npm install
 - name: Install Playwright Browsers
   run: npx playwright install --with-deps
-- name: Run UI tests 
-  run: npm run tests:ui -- --reporter=html 
-  env: PLAYWRIGHT_HTML_REPORT: playwright-report-ui
+- name: Run UI tests
+  run: npm run tests:ui -- --reporter=html
+  env:
+    PLAYWRIGHT_HTML_REPORT: playwright-report-ui
   
 - name: Run API tests
   run: npm run tests:api -- --reporter=html 
